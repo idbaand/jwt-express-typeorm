@@ -4,6 +4,8 @@ import { getRepository } from "typeorm";
 import { validate } from "class-validator";
 
 import { User } from "../entity/User";
+import { Project } from "../entity/Project";
+import { resolveTxt } from "dns";
 
 class UserController{
 
@@ -17,6 +19,16 @@ static listAll = async (req: Request, res: Response) => {
   //Send the users object
   res.send(users);
 };
+
+static listProjects = async (req: Request, res: Response) => {
+  const id: number = req.params.id;
+  const projectRepo = getRepository(Project);
+  try {
+      
+  } catch (error) {
+    res.status(404).send(error);
+  }
+}
 
 static getOneById = async (req: Request, res: Response) => {
   //Get the ID from the url
