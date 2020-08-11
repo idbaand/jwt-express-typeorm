@@ -4,6 +4,7 @@ import Input from 'react-validation/build/input';
 import CheckButton from 'react-validation/build/button';
 
 import {isEmail} from "validator";
+import authService from '../services/auth.service';
 
 const required = value => {
     if (!value) {
@@ -49,7 +50,32 @@ export default class Login extends Component {
     }
 
     handleLogin(e) {
+        e.preventDefault();
 
+        this.setState({
+            message: "", loading: true
+        });
+
+        this.form.validateAll();
+
+        if (this.checkBtn.context._errors.length === 0 ) {
+            authService.login(this.state.username, this.state.password).then(
+                () => {
+                    this.props.history.push("/profile");
+                    window.location.reload();
+                },
+                error => {
+                    const resMessage = (error.response && error.response.data 
+                        && error.response.data.message) || error.message || error.toString();
+                    
+                        this.setState({
+                            loading: false, message: resMessage
+                        });
+                }
+            )
+        } else {
+            this.setState({ loading: false})
+        }
     }
 
     render(){

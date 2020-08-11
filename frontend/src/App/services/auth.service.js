@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { response } from 'express';
 
 
 class AuthService {
@@ -20,6 +19,10 @@ class AuthService {
 
     logout() {
         localStorage.removeItem("user");
+    }
+
+    getCurrentUser() {
+        return JSON.parse(localStorage.getItem('user'));
     }
 
     //register()

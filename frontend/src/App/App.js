@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import 'boostrap/dist/css/boostrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Home from './pages/Home';
 import List from './pages/List';
-import { Switch, Route } from 'react-router-dom';
-import { Router } from 'express';
+import { Switch, BrowserRouter as Router, Route , Link} from 'react-router-dom';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import Home from './pages/Profile';
+import Profile from './pages/Profile';
 
 class App extends Component {
   constructor(props) {
